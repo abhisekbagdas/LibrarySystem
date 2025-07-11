@@ -16,8 +16,7 @@ public class DatabaseConnection {
         Connection conn = DriverManager.getConnection(path, userName, password);
         return conn;
 
-//        update
-    } a.skdfgas
+    }
 
     public static void main(String[] args) {
         try {
