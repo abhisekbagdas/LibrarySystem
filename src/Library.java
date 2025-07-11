@@ -7,14 +7,13 @@ import java.util.Scanner;
 
 public class Library {
     public static void main(String[] args) {
-        // TODO create some books and users
         Scanner input = new Scanner(System.in);
         // create some books and users
         Book book1 = new Book(12, "Atomic Habits",10, "James Clear");
         try {
             Connection conn = DatabaseConnection.connect();
             String query = "INSERT INTO book" +
-                    "(bookNumber, bookName, bookAuthor, bookquantity) " +
+                    "(bookNumber, bookName, bookAuthor, bookQuantity) " +
                     "VALUES (?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1,book1.getBookNumber());
@@ -30,8 +29,11 @@ public class Library {
             throw new RuntimeException(e);
         }
 
-
         User user1 = new User("Sunil", "sunil-57", 5566);
+
+
+
+
         //show available options: available books, borrow book, return book, exit
         System.out.println("Welcome to the Library");
         System.out.println("Enter 1: Show available books ");
@@ -41,7 +43,31 @@ public class Library {
         System.out.println("Choose an option: ");
         int option = input.nextInt();
         if(option == 1){
-            System.out.println("working on viewing available books");
+            System.out.println("Available books");
+            try {
+                Connection conn = DatabaseConnection.connect();
+                ArrayList<Book> bookList = new ArrayList<>();
+                String query = "SELECT bookNumber,bookName, bookQuantity,bookAuthor FROM book";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ResultSet bookSet = ps.executeQuery();
+                while(bookSet.next()){
+//                    int bookNumber = bookSet.getInt("booknumber");
+//                    String bookName = bookSet.getString("bookname");
+//                    int bookQuantity = bookSet.getInt("bookquantity");
+//                    String authorName = bookSet.getString("authorName");
+                    Book book = new Book(
+                            bookSet.getInt("bookNumber"),
+                            bookSet.getString("bookName"),
+                            bookSet.getInt("bookQuantity"),
+                            bookSet.getString("bookAuthor"));
+                    bookList.add(book);
+                }
+                for(Book book: bookList){
+                    System.out.println("Book Number: "+book.getBookNumber());
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }else if(option == 2)
         {
             System.out.println("working on borrowing books");
