@@ -18,20 +18,4 @@ public class DatabaseConnection {
 
     }
 
-    public static void main(String[] args) {
-        try {
-            if (DatabaseConnection.connect()!=null){
-                System.out.println("Connection Successful");
-            }
-            else {
-                System.out.println("Connection Failed");
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }
