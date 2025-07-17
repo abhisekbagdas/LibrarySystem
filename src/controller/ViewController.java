@@ -7,10 +7,12 @@ import view.UpdateBookView;
 
 public class ViewController {
     public static void getAddBookView() {
+
         AddBookView.showAddBookView();
     }
 
     public static void getAvailableBooks() {
+
         AvailableBooksView.showAvailableBooksView();
     }
 
@@ -26,6 +28,7 @@ public class ViewController {
     }
 
     public static void getUpdateBookView() {
+
         UpdateBookView.showUpdateBookView();
     }
 

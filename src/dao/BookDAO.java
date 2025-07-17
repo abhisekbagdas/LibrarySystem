@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BookDAO {
+
     public void insertBook(Book book){
         try {
             Connection conn = dao.DatabaseConnection.connect();
@@ -68,14 +69,14 @@ public class BookDAO {
         ArrayList<Book> bookList = new ArrayList<>();
             try {
                 Connection conn = dao.DatabaseConnection.connect();
-                String query = "SELECT booknumber,bookName, bookquantity,bookAuthor FROM book";
+                String query = "SELECT bookNumber,bookName, bookQuantity,bookAuthor FROM book";
                 PreparedStatement ps = conn.prepareStatement(query);
                 ResultSet bookSet = ps.executeQuery();
                 while(bookSet.next()){
                     Book book = new Book(
-                                    bookSet.getInt("booknumber"),
-                                    bookSet.getString("bookname"),
-                                    bookSet.getInt("bookquantity"),
+                                    bookSet.getInt("bookNumber"),
+                                    bookSet.getString("bookName"),
+                                    bookSet.getInt("bookQuantity"),
                                     bookSet.getString("bookAuthor"));
                     bookList.add(book);
                 }

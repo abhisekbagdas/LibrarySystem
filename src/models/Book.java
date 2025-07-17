@@ -1,18 +1,19 @@
 package models;
 
-public class Book{
+public class Book {
     //attributes ->book number, nam, quantity, author
     private int bookNumber;
     private String bookName;
     private int bookQuantity;
     private String bookAuthor;
 
-    public Book(int bookNumber, String bookName, int bookQuantity, String bookAuthor){
+    public Book(int bookNumber, String bookName, int bookQuantity, String bookAuthor) {
         this.bookNumber = bookNumber;
         this.bookName = bookName;
         this.bookQuantity = bookQuantity;
         this.bookAuthor = bookAuthor;
     }
+
     public int getBookNumber() {
         return bookNumber;
     }
@@ -46,10 +47,11 @@ public class Book{
     }
 
     //behaviour -> increase quantity, decrease quantity
-    public void increaseQuantity(){
+    public void increaseQuantity() {
         this.bookQuantity++;
     }
-    public void decreaseQuantity(){
+
+    public void decreaseQuantity() {
         this.bookQuantity--;
     }
 }
